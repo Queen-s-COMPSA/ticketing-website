@@ -11,6 +11,11 @@ module.exports = {
       },
       textColor: {
         custom_yellow: "#D7DE21",
+        custom_purple: "#C686F3",
+      },
+      backgroundColor: {
+        custom_yellow: "#D7DE21",
+        custom_dark_purple: "#5D15D2",
       },
       backgroundImage: {
         "custom-bg": 'linear-gradient(187deg, rgba(31, 31, 31, 0.00) 20.41%, #1F1F1F 89.83%), url("../src/images/Events.png")',
