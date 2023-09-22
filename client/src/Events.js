@@ -70,7 +70,7 @@ function Events() {
           </div>
           <button
             id='toggleButton'
-            className='bg-custom_dark_purple text-white mt-14 mb-40 px-10 py-3 rounded-lg'
+            className='bg-custom_dark_purple border-2 border-custom_dark_purple transition-all duration-300 ease-in-out text-white mt-14 mb-40 px-10 py-3 rounded-lg hover:bg-white hover:text-custom_purple'
             onClick={() => setIsVisible(!isVisible)}
           >
             {isVisible ? "View Less" : "View All"}

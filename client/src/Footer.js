@@ -7,25 +7,43 @@ import email_img from "./images/email.svg";
 
 export default function Footer() {
   return (
-    <div className='footer bg-custom_black text-white py-10 flex flex-col items-center justify-between text-center'>
+    <div className='footer bg-custom_black text-white py-10 flex flex-col items-center justify-between text-center transition-all duration-300 ease-in-out'>
       <h1 className='font-book text-xl mb-2'>Stay Connected</h1>
       <div className='socials-container flex flex-wrap justify-center mb-5'>
-        <a href='https://www.instagram.com/compsa/' className='contact-button bg-white rounded-full m-2 p-2 hover:bg-opacity-75'>
+        <a
+          href='https://www.instagram.com/compsa/'
+          className='contact-button bg-white rounded-full m-2 p-2 hover:bg-custom_yellow transition-all duration-300 ease-in-out'
+        >
           <img src={instagram_img} className='icon w-10 h-10' alt='Instagram' />
         </a>
-        <a href='https://discord.com/invite/pmC8tATvhq' className='contact-button bg-white rounded-full m-2 p-2 hover:bg-opacity-75'>
+        <a
+          href='https://discord.com/invite/pmC8tATvhq'
+          className='contact-button bg-white rounded-full m-2 p-2 hover:bg-custom_yellow transition-all duration-300 ease-in-out'
+        >
           <img src={discord_img} className='icon w-10 h-10' alt='Discord' />
         </a>
-        <a href='https://www.tiktok.com/@compsa?lang=en' className=' bg-white rounded-full m-2 p-2 hover:bg-opacity-75'>
+        <a
+          href='https://www.tiktok.com/@compsa?lang=en'
+          className=' bg-white rounded-full m-2 p-2 hover:bg-custom_yellow transition-all duration-300 ease-in-out'
+        >
           <img src={Tiktok_img} className=' w-10 h-10' alt='Tiktok' />
         </a>
-        <a href='https://www.facebook.com/queenscompsa' className='contact-button bg-white rounded-full m-2 p-2 hover:bg-opacity-75'>
+        <a
+          href='https://www.facebook.com/queenscompsa'
+          className='contact-button bg-white rounded-full m-2 p-2 hover:bg-custom_yellow transition-all duration-300 ease-in-out'
+        >
           <img src={facebook_img} className='icon w-10 h-10' alt='Facebook' />
         </a>
-        <a href='https://www.linkedin.com/company/queenscompsa/' className='contact-button bg-white rounded-full m-2 p-2 hover:bg-opacity-75'>
+        <a
+          href='https://www.linkedin.com/company/queenscompsa/'
+          className='contact-button bg-white rounded-full m-2 p-2 hover:bg-custom_yellow transition-all duration-300 ease-in-out'
+        >
           <img src={linkedin_img} className='icon w-10 h-10' alt='Linkedin' />
         </a>
-        <a href='mailto:help@compsa.queensu.ca' className='contact-button bg-white rounded-full m-2 p-2 hover:bg-opacity-75'>
+        <a
+          href='mailto:help@compsa.queensu.ca'
+          className='contact-button bg-white rounded-full m-2 p-2 hover:bg-custom_yellow transition-all duration-300 ease-in-out'
+        >
           <img src={email_img} className='icon w-10 h-10 transform scale-85' alt='Email' />
         </a>
       </div>
