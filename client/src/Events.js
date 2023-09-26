@@ -40,19 +40,19 @@ function Events() {
       {/* Events */}
       <section className=' flex flex-col items-center'>
         {/* Upcoming Events */}
-        <section className='w-custon_max_w flex items-center mt-52 mb-8'>
+        <section className='max-w-custon_max_w w-full flex items-center mt-52 mb-8'>
           <span className='w-full h-1  bg-custom_yellow '></span>
           <h6 className='text-4xl text-center mx-4 whitespace-nowrap font-medium'>UPCOMING EVENTS</h6>
           <span className='w-full h-1  bg-custom_yellow'></span>
         </section>
 
-        <section className='w-custon_max_w flex flex-col items-center'>
+        <section className='max-w-custon_max_w flex flex-col items-center'>
           {events.map((event, index) => (
             <EventCard key={index} {...event} />
           ))}
         </section>
         {/* All Events */}
-        <section className='w-custon_max_w  flex flex-col items-center '>
+        <section className='max-w-custon_max_w  flex flex-col items-center '>
           <div
             id='contentWrapper'
             className={` transition-all duration-300 ease-in-out ${isVisible ? "mt-40 scale-100 opacity-100" : "mt-0 scale-0 opacity-0"}`}

@@ -9,6 +9,9 @@ module.exports = {
       width: {
         custon_max_w: "47.5rem",
       },
+      maxWidth: {
+        custon_max_w: "47.5rem",
+      },
       textColor: {
         custom_yellow: "#D7DE21",
         custom_purple: "#5D15D2",

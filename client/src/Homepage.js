@@ -29,8 +29,8 @@ function App() {
       </header>
 
       {/* Home Page */}
-      <section className='bg-custom-bg bg-hero-pattern  bg-cover bg-center h-screen max-h-custom_bg_h flex justify-center items-center '>
-        <div className='w-custon_max_w mt-96 '>
+      <section className='bg-custom-bg bg-hero-patternbg-cover bg-center h-screen max-h-custom_bg_h flex justify-center items-center '>
+        <div className='w-custon_max_w mt-96 m-10 '>
           <h6 className='text-5xl font-bold text-custom_yellow '>COMPSA EVENTS</h6>
           <p className='text-2xl pt-6 text-white'>
             Description about ticket purchasing or something? Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce quis dui sollicitudin,
