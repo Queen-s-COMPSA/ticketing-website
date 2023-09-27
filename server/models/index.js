@@ -43,6 +43,27 @@ fs.readdirSync(__dirname)
 models.sequelize = sequelize;
 models.Sequelize = Sequelize;
 
+// ASSOCIATIONS GO HERE
+
+// Users can have tickets assigned to their account
+// USER HAS MANY TICKETS
+// TICKET BELONGS TO A USERS
+models.TicketingUser.hasMany(models.TicketingTicket, { foreignKey: "userId" });
+models.TicketingTicket.belongsTo(models.TicketingUser, {
+  foreignKey: "userId",
+});
+
+// Events have tickets associated with them and every ticket has an associated event
+// EVENT HAS MANY TICKETS
+// TICKET BELONGS TO AN EVENT
+models.TicketingEvent.hasMany(models.TicketingTicket, {
+  foreignKey: "eventId",
+});
+
+models.TicketingTicket.belongsTo(models.TicketingEvent, {
+  foreignKey: "eventId",
+});
+
 // Initialize Sequelize, authenticate, sync models, and populate initial data
 sequelize
   .authenticate()
