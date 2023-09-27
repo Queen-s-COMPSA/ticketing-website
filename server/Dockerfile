@@ -1,6 +1,6 @@
 FROM node:20-buster-slim
 
-WORKDIR /Backend
+WORKDIR /server
 
 COPY package.json .
 
@@ -11,7 +11,6 @@ RUN npm install -g nodemon
 RUN npm install
 
 COPY . .
-
 
 EXPOSE 3000
 

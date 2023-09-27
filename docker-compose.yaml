@@ -2,21 +2,22 @@ version: "3.8"
 
 services:
   fiat-db:
-    image: postgres
+    image: mariadb:lts-jammy
     ports:
-      - 5432:5432
+      - 3306:3306 # MariaDB uses port 3306 by default
     container_name: fiat-db
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: JunkPass4321
-      POSTGRES_DB: fiat
+      MYSQL_ROOT_PASSWORD: JunkPass4321
+      MYSQL_DATABASE: fiat
+      MYSQL_USER: fiatuser
+      MYSQL_PASSWORD: JunkPass4321
     volumes:
-      - fiat-db-volume:/var/lib/postgresql/data
+      - fiat-db-volume:/var/lib/mysql # MariaDB data directory
     networks:
       - fiat-network
 
   fiat-backend:
-    build: ./Backend
+    build: ./server
     container_name: fiat-backend
     ports:
       - 3000:3000
@@ -25,17 +26,16 @@ services:
     networks:
       - fiat-network
     volumes:
-      - "./Backend:/Backend"
-
+      - "./server:/server"
     environment:
       SERVERHOST: "localhost"
       SERVERPORT: 3000
-      PGUSER: "postgres"
-      PGPASSWORD: "JunkPass4321"
-      PGHOST: "fiat-db"
-      PGDATABASE: "fiat"
-      PGPORT: 5432
-      DBDIALECT: "postgres"
+      MYSQL_USER: "fiatuser"
+      MYSQL_PASSWORD: "JunkPass4321"
+      MYSQL_HOST: "fiat-db"
+      MYSQL_DATABASE: "fiat"
+      MYSQL_PORT: 3306
+      DBDIALECT: "mariadb" # Updated to use MariaDB dialect if your ORM supports it
       SESSIONSECRET: "sessionsecret123"
       COOKIESECRET: "cookiesecret123"
       NODE_ENV: "development"

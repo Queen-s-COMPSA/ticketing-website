@@ -4,15 +4,18 @@
 const path = require("path");
 const fs = require("fs");
 const { Sequelize } = require("sequelize");
-const env = process.env.NODE_ENV || "development";
-const config = require(__dirname + "/../config/config.js")[env];
 
 // Initialize Sequelize instance with configuration
 const sequelize = new Sequelize(
-  config.database,
-  config.username,
-  config.password,
-  config
+  process.env.MYSQL_DATABASE,
+  process.env.MYSQL_USER,
+  process.env.MYSQL_PASSWORD,
+  {
+    logging: false,
+    define: { freezeTableName: true },
+    host: process.env.MYSQL_HOST,
+    dialect: process.env.DBDIALECT,
+  }
 );
 
 // Object to store models for export
@@ -52,10 +55,6 @@ sequelize
       "Sequelize has successfully synced models to database with alterations..."
     )
   )
-  // Populate Admin example accounts
-  .then(async () => {
-    console.log(await require("./util/populateAdmins")(models));
-  })
   // Catch population errors
   .catch((err) => {
     console.error("Error when connecting Sequelize to Database: ", err);

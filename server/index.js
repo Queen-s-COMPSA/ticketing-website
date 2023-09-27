@@ -1,13 +1,11 @@
 // Import required packages
 const express = require("express");
 const session = require("express-session");
-const passport = require("passport");
 const helmet = require("helmet");
-const { Client } = require("pg");
-const pgSessionSimple = require("connect-pg-simple")(session);
 const socketIo = require("socket.io");
 const http = require("http");
 const cors = require("cors");
+const MySQLStore = require("express-mysql-session")(session);
 
 // Initialize express app
 const app = express();
@@ -32,7 +30,7 @@ const server = http.createServer(app);
 // Configure CORS options
 // Allow for frontend calls via cors
 const corsOptions = {
-  origin: [`http://localhost:5000`],
+  origin: "*",
   credentials: true,
   optionsSuccessStatus: 200,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
@@ -49,15 +47,6 @@ app.use(
   })
 );
 
-// Connect to PostgreSQL database
-const pgClient = new Client();
-pgClient.connect();
-
-// Configure session storage for PostgreSQL
-const pgSessionStore = new pgSessionSimple({
-  createTableIfMissing: true,
-});
-
 // Helper function for cookie expiration
 function cookieExpire() {
   this.SECOND = 1000;
@@ -66,10 +55,21 @@ function cookieExpire() {
   this.DAY = this.HOUR * 24;
 }
 
+const mySqlSessionOptions = {
+  host: process.env.MYSQL_HOST,
+  port: 3306,
+  user: process.env.MYSQL_USER,
+  password: process.env.MYSQL_PASSWORD,
+  database: process.env.MYSQL_DATABASE,
+  createDatabaseTable: true,
+};
+
+const mySqlSessionStore = new MySQLStore(mySqlSessionOptions);
+
 // Configure express-session
 app.use(
   session({
-    store: pgSessionStore,
+    store: mySqlSessionStore,
     secret: process.env.SESSIONSECRET,
     resave: false,
     saveUninitialized: false,
@@ -82,10 +82,6 @@ app.use(
     },
   })
 );
-
-// Initialize and configure Passport
-app.use(passport.initialize());
-app.use(passport.session());
 
 // Set up routes
 app.use("/", require("./routes"));
