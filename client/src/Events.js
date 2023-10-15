@@ -1,15 +1,8 @@
-import React, { useEffect, useState } from "react";
-import bg_image from "./images/Events.png";
+import React, { useState, forwardRef } from "react";
 import EventCard from "./EventCard";
 
-function Events() {
+const Events = forwardRef((props, ref) => {
   const [isVisible, setIsVisible] = useState(false);
-
-  function toggleVisibility() {
-    const contentWrapper = document.getElementById("contentWrapper");
-    contentWrapper.classList.toggle("scale-100");
-    contentWrapper.classList.toggle("opacity-100");
-  }
 
   const events = [
     {
@@ -36,7 +29,7 @@ function Events() {
   ];
 
   return (
-    <div className=''>
+    <div ref={ref}>
       {/* Events */}
       <section className=' flex flex-col items-center'>
         {/* Upcoming Events */}
@@ -48,7 +41,7 @@ function Events() {
 
         <section className='max-w-custon_max_w flex flex-col items-center'>
           {events.map((event, index) => (
-            <EventCard key={index} {...event} />
+            <EventCard key={index} {...event} onButtonClick={props.onEventCardClick} />
           ))}
         </section>
         {/* All Events */}
@@ -64,7 +57,7 @@ function Events() {
             </div>
             <section id='contentContainer' style={{ height: isVisible ? "auto" : "0", overflow: "hidden" }}>
               {events.map((event, index) => (
-                <EventCard key={index} {...event} />
+                <EventCard key={index} {...event} onButtonClick={props.onEventCardClick} />
               ))}
             </section>
           </div>
@@ -79,6 +72,6 @@ function Events() {
       </section>
     </div>
   );
-}
+});
 
 export default Events;

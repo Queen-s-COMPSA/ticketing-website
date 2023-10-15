@@ -1,3 +1,4 @@
+import React from "react";
 import Tiktok_img from "./images/tiktok.svg";
 import instagram_img from "./images/instagram.svg";
 import discord_img from "./images/discord.svg";
@@ -5,9 +6,12 @@ import facebook_img from "./images/facebook.svg";
 import linkedin_img from "./images/linkedin.svg";
 import email_img from "./images/email.svg";
 
-export default function Footer() {
+const Footer = React.forwardRef((props, ref) => {
   return (
-    <div className='footer bg-custom_black text-white py-10 flex flex-col items-center justify-between text-center transition-all duration-300 ease-in-out'>
+    <div
+      ref={ref}
+      className='footer bg-custom_black text-white py-10 flex flex-col items-center justify-between text-center transition-all duration-300 ease-in-out'
+    >
       <h1 className='font-book text-xl mb-2'>Stay Connected</h1>
       <div className='socials-container flex flex-wrap justify-center mb-5'>
         <a
@@ -55,4 +59,6 @@ export default function Footer() {
       <span className='copyright mt-5 text-yellow-500 text-xs'>©2023 COMPSA. All rights reserved.</span>
     </div>
   );
-}
+});
+
+export default Footer;
