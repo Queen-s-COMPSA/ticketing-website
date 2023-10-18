@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{html,js}"],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       maxHeight: {
@@ -23,7 +23,8 @@ module.exports = {
         custom_black: "#1f1f1f",
       },
       backgroundImage: {
-        "custom-bg": 'linear-gradient(187deg, rgba(31, 31, 31, 0.00) 20.41%, #1F1F1F 89.83%), url("../src/images/Events.png")',
+        "custom-bg":
+          'linear-gradient(187deg, rgba(31, 31, 31, 0.00) 20.41%, #1F1F1F 89.83%), url("../src/images/Events.png")',
       },
       borderColor: {
         custom_dark_purple: "#5D15D2",
