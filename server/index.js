@@ -1,11 +1,8 @@
 // Import required packages
 const express = require("express");
-const session = require("express-session");
 const helmet = require("helmet");
-const socketIo = require("socket.io");
 const http = require("http");
 const cors = require("cors");
-const MySQLStore = require("express-mysql-session")(session);
 
 // Initialize express app
 const app = express();
@@ -44,42 +41,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
   helmet({
     contentSecurityPolicy: true,
-  })
-);
-
-// Helper function for cookie expiration
-function cookieExpire() {
-  this.SECOND = 1000;
-  this.MINUTE = this.SECOND * 60;
-  this.HOUR = this.MINUTE * 60;
-  this.DAY = this.HOUR * 24;
-}
-
-const mySqlSessionOptions = {
-  host: process.env.MYSQL_HOST,
-  port: 3306,
-  user: process.env.MYSQL_USER,
-  password: process.env.MYSQL_PASSWORD,
-  database: process.env.MYSQL_DATABASE,
-  createDatabaseTable: true,
-};
-
-const mySqlSessionStore = new MySQLStore(mySqlSessionOptions);
-
-// Configure express-session
-app.use(
-  session({
-    store: mySqlSessionStore,
-    secret: process.env.SESSIONSECRET,
-    resave: false,
-    saveUninitialized: false,
-    rolling: true,
-    cookie: {
-      secure: true, // Ensure cookies are sent only over HTTPS
-      httpOnly: true, // Ensure the cookie is not accessible via JavaScript
-      sameSite: "lax", // Use the 'lax' setting for sameSite to provide a level of CSRF protection
-      maxAge: new cookieExpire().DAY * 7,
-    },
   })
 );
 

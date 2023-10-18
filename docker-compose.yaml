@@ -16,9 +16,9 @@ services:
     networks:
       - fiat-network
 
-  fiat-backend:
+  fiat-server:
     build: ./server
-    container_name: fiat-backend
+    container_name: fiat-server
     ports:
       - 3000:3000
     depends_on:
@@ -27,6 +27,8 @@ services:
       - fiat-network
     volumes:
       - "./server:/server"
+      - /server/node_modules
+
     environment:
       SERVERHOST: "localhost"
       SERVERPORT: 3000
@@ -36,9 +38,23 @@ services:
       MYSQL_DATABASE: "fiat"
       MYSQL_PORT: 3306
       DBDIALECT: "mariadb" # Updated to use MariaDB dialect if your ORM supports it
-      SESSIONSECRET: "sessionsecret123"
-      COOKIESECRET: "cookiesecret123"
       NODE_ENV: "development"
+
+  fiat-client:
+    container_name: fiat-client
+    build: ./client
+    ports:
+      - "5173:5173"
+    networks:
+      - fiat-network
+    volumes:
+      - "./client:/client"
+      - /client/node_modules
+
+    stdin_open: true
+    tty: true
+    environment:
+      BACKEND_ADDR: "localhost:3000"
 
 networks:
   fiat-network:

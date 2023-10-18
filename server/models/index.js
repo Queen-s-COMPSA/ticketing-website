@@ -3,7 +3,7 @@
 // Import required packages and configurations
 const path = require("path");
 const fs = require("fs");
-const { Sequelize } = require("sequelize");
+const { Sequelize, DataTypes } = require("sequelize");
 
 // Initialize Sequelize instance with configuration
 const sequelize = new Sequelize(
@@ -14,7 +14,7 @@ const sequelize = new Sequelize(
     logging: false,
     define: { freezeTableName: true },
     host: process.env.MYSQL_HOST,
-    dialect: process.env.DBDIALECT,
+    dialect: "mariadb",
   }
 );
 
@@ -44,14 +44,6 @@ models.sequelize = sequelize;
 models.Sequelize = Sequelize;
 
 // ASSOCIATIONS GO HERE
-
-// Users can have tickets assigned to their account
-// USER HAS MANY TICKETS
-// TICKET BELONGS TO A USERS
-models.TicketingUser.hasMany(models.TicketingTicket, { foreignKey: "userId" });
-models.TicketingTicket.belongsTo(models.TicketingUser, {
-  foreignKey: "userId",
-});
 
 // Events have tickets associated with them and every ticket has an associated event
 // EVENT HAS MANY TICKETS

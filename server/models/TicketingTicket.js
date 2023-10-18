@@ -6,14 +6,6 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
       primaryKey: true,
     },
-    userId: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: "TicketingUser",
-        key: "id",
-      },
-      allowNull: false,
-    },
     eventId: {
       type: DataTypes.INTEGER,
       references: {
@@ -25,10 +17,23 @@ module.exports = (sequelize, DataTypes) => {
     qrCode: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
     },
-    purchaseDate: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
+    validated: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+      allowNull: false,
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        isEmail: true,
+      },
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
   });
   return TicketingTicket;

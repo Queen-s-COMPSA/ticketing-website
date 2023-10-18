@@ -6,7 +6,6 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
       primaryKey: true,
     },
-
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -14,6 +13,13 @@ module.exports = (sequelize, DataTypes) => {
 
     description: {
       type: DataTypes.TEXT,
+    },
+
+    status: {
+      type: DataTypes.ENUM,
+      values: ["draft", "published", "passed", "cancelled"],
+      allowNull: false,
+      defaultValue: "draft",
     },
 
     date: {
@@ -32,11 +38,6 @@ module.exports = (sequelize, DataTypes) => {
     },
 
     totalTickets: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-
-    ticketsRemaining: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },

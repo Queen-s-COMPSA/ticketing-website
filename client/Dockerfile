@@ -1,6 +1,6 @@
 FROM node:20-buster-slim
 
-WORKDIR /server
+WORKDIR /client
 
 COPY package.json .
 
@@ -8,10 +8,8 @@ COPY package-lock.json .
 
 RUN npm install
 
-RUN npm install -g nodemon
-
 COPY . .
 
-EXPOSE 3000
+EXPOSE 5173
 
-CMD ["nodemon"]
+CMD ["npm", "run", "dev"]
