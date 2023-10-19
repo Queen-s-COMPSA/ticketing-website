@@ -7,7 +7,7 @@ module.exports = {
         custom_bg_h: "53rem", // You can replace '40rem' with your desired max-height value
       },
       width: {
-        custon_max_w: "47.5rem",
+        custom_max_w: "47.5rem",
       },
       maxWidth: {
         custon_max_w: "47.5rem",

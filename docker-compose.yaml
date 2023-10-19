@@ -1,50 +1,50 @@
 version: "3.8"
 
 services:
-  fiat-db:
-    image: mariadb:lts-jammy
-    ports:
-      - 3306:3306 # MariaDB uses port 3306 by default
-    container_name: fiat-db
-    environment:
-      MYSQL_ROOT_PASSWORD: JunkPass4321
-      MYSQL_DATABASE: fiat
-      MYSQL_USER: fiatuser
-      MYSQL_PASSWORD: JunkPass4321
-    volumes:
-      - fiat-db-volume:/var/lib/mysql # MariaDB data directory
-    networks:
-      - fiat-network
+  # fiat-db:
+  #   image: mariadb:lts-jammy
+  #   ports:
+  #     - 3306:3306 # MariaDB uses port 3306 by default
+  #   container_name: fiat-db
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: JunkPass4321
+  #     MYSQL_DATABASE: fiat
+  #     MYSQL_USER: fiatuser
+  #     MYSQL_PASSWORD: JunkPass4321
+  #   volumes:
+  #     - fiat-db-volume:/var/lib/mysql # MariaDB data directory
+  #   networks:
+  #     - fiat-network
 
-  fiat-server:
-    build: ./server
-    container_name: fiat-server
-    ports:
-      - 3000:3000
-    depends_on:
-      - fiat-db
-    networks:
-      - fiat-network
-    volumes:
-      - "./server:/server"
-      - /server/node_modules
+  # fiat-server:
+  #   build: ./server
+  #   container_name: fiat-server
+  #   ports:
+  #     - 3000:3000
+  #   depends_on:
+  #     - fiat-db
+  #   networks:
+  #     - fiat-network
+  #   volumes:
+  #     - "./server:/server"
+  #     - /server/node_modules
 
-    environment:
-      SERVERHOST: "localhost"
-      SERVERPORT: 3000
-      MYSQL_USER: "fiatuser"
-      MYSQL_PASSWORD: "JunkPass4321"
-      MYSQL_HOST: "fiat-db"
-      MYSQL_DATABASE: "fiat"
-      MYSQL_PORT: 3306
-      DBDIALECT: "mariadb" # Updated to use MariaDB dialect if your ORM supports it
-      NODE_ENV: "development"
+  #   environment:
+  #     SERVERHOST: "localhost"
+  #     SERVERPORT: 3000
+  #     MYSQL_USER: "fiatuser"
+  #     MYSQL_PASSWORD: "JunkPass4321"
+  #     MYSQL_HOST: "fiat-db"
+  #     MYSQL_DATABASE: "fiat"
+  #     MYSQL_PORT: 3306
+  #     DBDIALECT: "mariadb" # Updated to use MariaDB dialect if your ORM supports it
+  #     NODE_ENV: "development"
 
   fiat-client:
     container_name: fiat-client
     build: ./client
     ports:
-      - "5173:5173"
+      - "5175:5175"
     networks:
       - fiat-network
     volumes:
