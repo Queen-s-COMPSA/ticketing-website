@@ -105,7 +105,6 @@ function EventCard({
         <p className=" text-custom_yellow text-xl font-semibold">
           {formattedDate}
         </p>
-        <p className="text-lg text-purple-500"> Start Time: {formattedTime}</p>
         <p className="text-lg mt-4">{description}</p>
 
         {tickets_price ? (
@@ -113,7 +112,7 @@ function EventCard({
             className="border-white border-2 text-white mt-4 px-10 py-3 rounded-lg hover:bg-white hover:text-custom_black transition-all duration-300 ease-in-out"
             role="button"
           >
-            <a href={`https://tickets.compsa.ca/checkout.html?event=${uuid}`}>
+            <a href={`https://payments.compsa.ca/checkout.html?event=${uuid}`}>
               Purchase Now!
             </a>
           </button>
