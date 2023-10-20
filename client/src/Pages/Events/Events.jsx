@@ -11,8 +11,12 @@ const Events = forwardRef((props, ref) => {
     const fetchEvents = async () => {
       try {
         const response = await Axios.get(
-          "https://api.compsa.ca/tickets.compsa.ca/events"
-        );
+          "https://api.compsa.ca/tickets.compsa.ca/events", {
+              headers: {
+                "Content-Type": "application/json",
+              },
+              withCredentials: true,
+            })
         console.log("response: ", response);
         if (response.data) {
           const sortedEvents = response.data.sort((a, b) => {
