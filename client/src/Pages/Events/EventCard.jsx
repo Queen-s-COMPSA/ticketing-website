@@ -89,13 +89,13 @@ function EventCard({
           )}
         </div>
         <h5>
-          {ticketsLeft ? (
+          {ticketsLeft !== null ? (
             ticketsLeft !== 0 ? (
               <p className="text-gray-400 text-xl">
                 {ticketsLeft} Tickets Left
               </p>
             ) : (
-              "Sold Out"
+              <p className="text-gray-400 text-xl">Sold Out</p>
             )
           ) : (
             <></>
@@ -107,7 +107,7 @@ function EventCard({
         </p>
         <p className="text-lg mt-4">{description}</p>
 
-        {tickets_price ? (
+        {tickets_price && ticketsLeft !== 0 ? (
           <button
             className="border-white border-2 text-white mt-4 px-10 py-3 rounded-lg hover:bg-white hover:text-custom_black transition-all duration-300 ease-in-out"
             role="button"
